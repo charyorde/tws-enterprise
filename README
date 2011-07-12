@@ -1,3 +1,159 @@
-Readme content will be added as we move along.
+﻿project name: tws-enterprise
 
-Enjoy
+
+on Windows
+----------
+- download git for windows here: http://code.google.com/p/msysgit/downloads/list?can=3
+- send me your public key so I can add you as a collaborator. See here on how to create a public key: http://drupal.org/node/1066762
+- When you have generated your key, send it to me at dreyemi@gmail.com. I will add you immediately
+
+
+To get started quickly run these commands (Assuming you have git installed)
+---------------------------------------------------------------------------
+- git config --global user.name "Your Name"
+- git config --global user.email "your email"
+- git clone git@github.com:charyorde/tws-enterprise.git
+- Now you have recent files
+- To upload new changes, type git push
+
+Go to http://git-scm.com/ for more info about git
+
+basic commands to get started quickly
+-------------------------------------
+
+git config --list
+Configure your git setup, including name, email, remote origin etc
+
+git pull
+ Runs git fetch with the given parameters, and calls git merge to merge the retrieved head(s) into the current branch.
+With −−rebase, calls git rebase instead of git merge.
+
+git push or git push [remote-name] [branch-name]
+git will try to update all changed branches that exist on both sides... in this case that means that your new commit will
+get added to the upstream branch (remote repo)
+
+git fetch
+ Fetches named heads or tags from one or more other repositories, along with the objects necessary to complete them.
+The ref names and their object names of fetched refs are stored in .git/FETCH_HEAD. This information is left for a later
+merge operation done by git merge.
+
+
+git merge
+This does the actual file replacement after git fetch has been called.
+
+From local repo: git add <file1> <file2> -> git commit -> git push or
+git add . -> git commit -> git fetch -> git merge --ff-only
+
+From remote repo: git pull
+
+When you do git commit -a on the local, run git pull first inorder to update your local with the changes in the remote
+
+(for example, svet might have made changes).
+
+git add
+In order to begin tracking a new file, you use the command git add. To stage a change means to run git add
+
+git diff
+If the git status command is too vague for you - you want to know exactly what you changed, not just which files were
+changed - you can use the git diff command. You'll probably use it most often to answer two questions: What have you
+changed but not yet staged? And what have you staged that you are about to commit. git diff shows you the exact lines added
+and removed - the patch, as it were.
+
+git diff --cached or git diff --staged
+If you want to see what you’ve staged that will go into your next commit, you can use git diff --cached. This command
+compares your staged changes to your last commit
+
+git log
+View the commit history
+
+git log --pretty=oneline
+Prints each commit on a single line, which is useful if you are looking at a lot of commits.
+
+git log −−merge −p <path> will
+           show diffs first for the HEAD version and then the MERGE_HEAD
+           version.
+
+git diff >  [description]-[issue-number]-[comment-number].patch
+Create a patch
+
+git apply -v [patchname.patch]
+Apply a patch
+
+
+Undoing Things
+git reset HEAD <file> - Unstage a staged file
+git commit --amend - Takes your staging area(i.e files added using git add) and uses it for the commit.
+git checkout -- <file> - unmodify a modified file - revert it back to what it looked like when you last
+committed. any changes you made to that file are gone—you just copied another file over it. Don’t ever
+use this command unless you absolutely know that you don’t want the file.
+
+Working with Remotes
+git remote or git remote -v
+To see the remote servers you have configured. The name origin means the default name Git gives to the server you cloned.
+i.e your first cloned remote repository will be called origin. If you have any other repository, you will have to give it
+a shortname to reference it.
+
+git remote add [shortname] [url]
+Add a new remote git repository as a shortname you can reference easily.
+e.g git remote add pb git://github.com/paulbone/ticgit.git
+
+git fetch origin or git fetch [remote-name]
+Pulls data to local repository - it doesn't automatically merge it with any of your work or modify what you are currently
+working on. you have to merge it manually into your work when you are ready.
+
+git remote show [remote-name] or git remote show origin
+Shows more information about a particular remote. Lists the URL for the remote repository as well as
+branch information. The command helpfully tells you that if you’re on the master branch and you run
+git pull, it will automatically merge in the master branch on the remote after it fetches all the remote
+references. It also fetches all the remote references it has pulled down.
+
+git remote rename [shortname] [new shortname]
+Change or rename a remote's shortname
+
+git tag -a v1.4 -m 'my version 1.4'
+Create a new tag called v1.4. This is an annotated tag.
+
+git tag -s v1.5 -m 'my signed 1.5 tag'
+Sign your tag with GPG - GNU Privacy Guard
+
+git tag v1.4-lw
+Create a lightweight tag. This is another type of tag different from annotated tag.
+
+git show v1.4
+Show the tag data along with the commit that was tagged.
+
+git tag -v [tag-name]
+Verifies your tag
+
+git branch [branch-name]
+Create a new branch. A branch in git is a pointer to one of your commits. The default branch name in
+Git is master. As you initially make commits, you're given a master branch that points to the last
+commit you made. Everytime you commit, it moves forward automatically.
+
+git checkout [branch-name]
+Move to an existing branch. i.e moves HEAD to point to another existing branch.
+
+git checkout -b [branch-name]
+Creates a branch and switch to it at the same time
+
+
+Questions
+---------
+
+- What do they mean by "Is request a Fresh deposit / Rollover Transaction"
+- The BACP seems we are building client UI as well
+
+Assumptions:
+
+- I assume that our work begins from "Is request a Fresh deposit / Rollover Transaction"
+- 
+
+- Role integration
+- InfoPool uses active directory(LDAP) for authentication
+- We need to find a way to keep track of the status of the deposit. How to determine whether it is Fresh deposit or Rollover Transaction
+- Fresh deposit put request to the flexcube server 
+- Rollover transaction put request to Flexcube server
+- Server returns data about posted data for confirmation
+- Treasury operations is notified
+- Commit is finally made into flexcube
+- 
