@@ -135,25 +135,3 @@ Move to an existing branch. i.e moves HEAD to point to another existing branch.
 
 git checkout -b [branch-name]
 Creates a branch and switch to it at the same time
-
-
-Questions
----------
-
-- What do they mean by "Is request a Fresh deposit / Rollover Transaction"
-- The BACP seems we are building client UI as well
-
-Assumptions:
-
-- I assume that our work begins from "Is request a Fresh deposit / Rollover Transaction"
-- 
-
-- Role integration
-- InfoPool uses active directory(LDAP) for authentication
-- We need to find a way to keep track of the status of the deposit. How to determine whether it is Fresh deposit or Rollover Transaction
-- Fresh deposit put request to the flexcube server 
-- Rollover transaction put request to Flexcube server
-- Server returns data about posted data for confirmation
-- Treasury operations is notified
-- Commit is finally made into flexcube
-- 
